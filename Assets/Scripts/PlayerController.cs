@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     private void Start()
     {
         gameInput.OnInteract += InteractAction;
+        gameInput.OnInteractAlternate += InteractAlternateAction;
     }
 
     private void InteractAction(object sender, EventArgs e)
@@ -41,6 +42,13 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         if (_selectedCounter != null)
         {
             _selectedCounter.Interact(this);
+        }
+    }
+    private void InteractAlternateAction(object sender, EventArgs e)
+    {
+        if (_selectedCounter != null)
+        {
+            _selectedCounter.InteractAlternate(this);
         }
     }
 
@@ -66,19 +74,25 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
             //Cannot move towards moveDir
             //Attempt movement only on X axis
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius,
+            canMove = moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius,
                 moveDirX, moveDist);
             //Can only move on X axis
-            if (canMove) moveDir = moveDirX;
+            if (canMove)
+            {
+                moveDir = moveDirX;
+            }
             else
             {
                 //Cannot move on X axis
                 //Attempt movement only on Z axis
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius,
+                canMove = moveDir.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius,
                     moveDirZ, moveDist);
                 //Can only move on Z axis
-                if (canMove) moveDir = moveDirZ;
+                if (canMove)
+                {
+                    moveDir = moveDirZ;
+                }
                 else
                 {
                     //Cannot move in any direction

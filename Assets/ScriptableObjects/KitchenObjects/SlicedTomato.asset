@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537b1804828ebe745976b44c624f0966, type: 3}
+  m_Name: SlicedTomato
+  m_EditorClassIdentifier: 
+  ObjName: Sliced Tomato
+  ObjSprite: {fileID: 0}
+  ObjPrefab: {fileID: 1649105475171033888, guid: 759a42508010f37448f032d587f5cfaf, type: 3}

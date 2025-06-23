@@ -17,21 +17,39 @@ public class KitchenObject : MonoBehaviour
         {
             this._kitchenObjP.ClearKitchenObject();
         }
+
         this._kitchenObjP = kitchenObjP;
 
         if (kitchenObjP.HasKitchenObject())
         {
             Debug.LogError("KitchenObjectParent already has KitcheObject");
         }
-        
+
         kitchenObjP.SetKitchenObject(this);
 
         transform.parent = kitchenObjP.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
     }
 
+    public void DestroySelf()
+    {
+        _kitchenObjP.ClearKitchenObject();
+
+        Destroy(gameObject);
+    }
+
     public IKitchenObjectParent GetKitchenObjectParent()
     {
         return _kitchenObjP;
+    }
+
+    public static KitchenObject SpawnKitchenObject(KitchenObjectSO objSO, IKitchenObjectParent ObjP)
+    {
+        Transform kitchenObjT = Instantiate(objSO.ObjPrefab);
+        KitchenObject obj = kitchenObjT.GetComponent<KitchenObject>();
+
+        obj.SetKitchenObjectParent(ObjP);
+
+        return obj;
     }
 }
