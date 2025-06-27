@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 537b1804828ebe745976b44c624f0966, type: 3}
-  m_Name: SlicedTomato
+  m_Name: Burnt Meat
   m_EditorClassIdentifier: 
-  ObjName: Sliced Tomato
-  ObjSprite: {fileID: 0}
-  ObjPrefab: {fileID: 1649105475171033888, guid: 759a42508010f37448f032d587f5cfaf, type: 3}
+  ObjName: Burnt Meat
+  ObjSprite: {fileID: 21300000, guid: 394fa39b4219b4a49a9b64ee3bf35481, type: 3}
+  ObjPrefab: {fileID: 1649105475171033888, guid: 6551183fbcbfdcc42a1cd25d9b38b83b, type: 3}

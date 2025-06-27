@@ -3,19 +3,24 @@ using UnityEngine.UI;
 
 public class ProgressUI : MonoBehaviour
 {
-    [SerializeField] private CuttingCounter counter;
+    [SerializeField] private GameObject hasProgressGO;
     [SerializeField] private Image fillImage;
 
+    private IHasProgress _hasProgress;
+    
     private void Start()
     {
-        counter.OnProgressChanged += ProgressChanged;
+        _hasProgress = hasProgressGO.GetComponent<IHasProgress>();
+        if (_hasProgress == null){Debug.LogError("Attached GameObject does not implement IHasProgress");}
+        
+        _hasProgress.OnProgressChanged += ProgressChanged;
 
         fillImage.fillAmount = 0f;
 
         Hide();
     }
 
-    private void ProgressChanged(object sender, CuttingCounter.OnProgressChangedEventArgs e)
+    private void ProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
         fillImage.fillAmount = e.progressNormalised;
 

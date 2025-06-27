@@ -1,15 +1,9 @@
 using System;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter, IHasProgress
 {
-    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
-
-    public class OnProgressChangedEventArgs : EventArgs
-    {
-        public float progressNormalised;
-    }
-
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnCut;
     
     [SerializeField] private CuttingRecipeSO[] recipeArray;
@@ -27,13 +21,13 @@ public class CuttingCounter : BaseCounter
                 //The player is carrying a valid KitchenObject
                 if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
                 {
-                    //Sets it down on the counter
+                    //Begins cutting process
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     _cuttingProgress = 0;
                     
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeWithInput(GetKitchenObject().GetKitchenObjectSO());
                     
-                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                     {
                         progressNormalised = (float)_cuttingProgress / cuttingRecipeSO.maxRequiredCuts
                     });
@@ -70,7 +64,7 @@ public class CuttingCounter : BaseCounter
             
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeWithInput(GetKitchenObject().GetKitchenObjectSO());
             
-            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
             {
                 progressNormalised = (float)_cuttingProgress / cuttingRecipeSO.maxRequiredCuts
             });

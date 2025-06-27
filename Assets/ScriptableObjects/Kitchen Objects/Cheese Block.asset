@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 537b1804828ebe745976b44c624f0966, type: 3}
-  m_Name: CheeseBlock
+  m_Name: Cheese Block
   m_EditorClassIdentifier: 
   ObjName: Cheese Block
   ObjSprite: {fileID: 21300000, guid: 3ba5a88a0508a488a85c30169a8e18de, type: 3}
