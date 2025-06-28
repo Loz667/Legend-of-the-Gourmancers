@@ -125,6 +125,24 @@ public class CookingFireCounter : BaseCounter, IHasProgress
             if (player.HasKitchenObject())
             {
                 //The player is carrying a KitchenObject
+                //Check if player has a plate
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plate))
+                {
+                    //Player is holding a plate so add ingredient to plate
+                    if (plate.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                        
+                        _currentState = State.Idle;
+                
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = _currentState });
+                
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                        {
+                            progressNormalised = 0f
+                        });
+                    }
+                }
             }
             else
             {

@@ -43,6 +43,20 @@ public class KitchenObject : MonoBehaviour
         return _kitchenObjP;
     }
 
+    public bool TryGetPlate(out PlateKitchenObject plate)
+    {
+        if (this is PlateKitchenObject)
+        {
+            plate = this as PlateKitchenObject;
+            return true;
+        }
+        else
+        {
+            plate = null;
+            return false;
+        }
+    }
+
     public static KitchenObject SpawnKitchenObject(KitchenObjectSO objSO, IKitchenObjectParent ObjP)
     {
         Transform kitchenObjT = Instantiate(objSO.ObjPrefab);
