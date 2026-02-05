@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3bf02083551be46bc7bee16bd22e76, type: 3}
-  m_Name: Carrot
+  m_Name: Bread
   m_EditorClassIdentifier: Assembly-CSharp::LotG.Inventories.InventoryItem
-  ItemID: 9dd7aac5-a4c7-4eba-a2cb-045e2d8d161c
-  ItemName: Carrot
-  ItemDescription: Orange and Crunchy
-  ItemIcon: {fileID: 21300000, guid: 1fbdfb9bf6c2e4397a1d62eed589ec1f, type: 3}
+  ItemID: 23fbc172-fbcb-4606-9253-4d0d7785b4a7
+  ItemName: Bread
+  ItemDescription: Crusty
+  ItemIcon: {fileID: 21300000, guid: d0f2ca00017af45a59e0ccc1e81d226f, type: 3}
   IsStackable: 0

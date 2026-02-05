@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3bf02083551be46bc7bee16bd22e76, type: 3}
-  m_Name: Carrot
+  m_Name: Potato
   m_EditorClassIdentifier: Assembly-CSharp::LotG.Inventories.InventoryItem
-  ItemID: 9dd7aac5-a4c7-4eba-a2cb-045e2d8d161c
-  ItemName: Carrot
-  ItemDescription: Orange and Crunchy
-  ItemIcon: {fileID: 21300000, guid: 1fbdfb9bf6c2e4397a1d62eed589ec1f, type: 3}
+  ItemID: 898cb848-d885-42e0-83b4-2587bd31cc0c
+  ItemName: Potato
+  ItemDescription: Brown and Earthy
+  ItemIcon: {fileID: 21300000, guid: 44994881295ab4b1084896d685432eff, type: 3}
   IsStackable: 0

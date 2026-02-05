@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LotG.Inventories
 {
     [CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/Inventory/Item")]
-    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     {
         [Tooltip("Auto-generated UUID of the inventory item.")]
         [SerializeField] string ItemID = null;
