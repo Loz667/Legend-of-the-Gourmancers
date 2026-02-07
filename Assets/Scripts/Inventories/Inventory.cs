@@ -62,6 +62,19 @@ namespace LotG.Inventories
                 }
             }
             return false;
+        }        
+
+        public bool RemoveItem(InventoryItem item)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (object.ReferenceEquals(slots[i].item, item))
+                {
+                    RemoveFromSlot(i, 1);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public InventoryItem GetItemInSlot(int slot)
@@ -82,7 +95,7 @@ namespace LotG.Inventories
                 slots[slot].number = 0;
                 slots[slot].item = null;
             }
-            if ( InventoryUpdated != null)
+            if (InventoryUpdated != null)
             {
                 InventoryUpdated();
             }
@@ -96,7 +109,7 @@ namespace LotG.Inventories
             }
 
             var i = FindStack(item);
-            if ( i >= 0)
+            if (i >= 0)
             {
                 slot = i;
             }
@@ -118,7 +131,7 @@ namespace LotG.Inventories
         private int FindSlot(InventoryItem item)
         {
             int i = FindStack(item);
-            if ( i < 0)
+            if (i < 0)
             {
                 i = FindEmptySlot();
             }
