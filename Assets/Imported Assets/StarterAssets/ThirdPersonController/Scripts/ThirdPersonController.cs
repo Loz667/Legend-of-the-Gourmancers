@@ -1,4 +1,5 @@
 ﻿ using UnityEngine;
+ using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -106,7 +107,9 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        private const string _battleScene = "Battle Playground";
         private const float _threshold = 0.01f;
+        private const float _timePerStep = 0.5f;
 
         private bool _hasAnimator;
 

@@ -1,4 +1,3 @@
-using StarterAssets;
 using UnityEngine;
 
 namespace LotG.UI
@@ -7,11 +6,16 @@ namespace LotG.UI
     {
         [SerializeField] private GameObject uiContainer;
 
-        StarterAssetsInputs inputs;
+        PlayerControls controls;
 
         private void Awake()
         {
-            inputs = FindFirstObjectByType<StarterAssetsInputs>();
+            controls = new PlayerControls();
+        }
+
+        private void OnEnable()
+        {
+            controls.Enable();
         }
 
         private void Start()
@@ -21,10 +25,9 @@ namespace LotG.UI
 
         private void Update()
         {
-            if (inputs.inventory)
+            if (controls.Player.Inventory.WasPressedThisFrame())
             {
                 uiContainer.SetActive(!uiContainer.activeSelf);
-                inputs.InventoryInput(false);
             }
         }
     }

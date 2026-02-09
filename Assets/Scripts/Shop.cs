@@ -6,12 +6,23 @@ public class Shop : MonoBehaviour
     [SerializeField] InventoryItem[] items;
     [SerializeField] float timeToCollect = 10f;
 
+    PlayerControls controls;
     Inventory playerInventory;
     PlayerInteractUI playerInteractUI;
 
     float collectionTimer;
     bool collectionAvailable = false;
     bool playerInRange = false;
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
 
     private void Start()
     {
@@ -25,7 +36,7 @@ public class Shop : MonoBehaviour
         {
             playerInteractUI.ShowInteractUI();
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (controls.Player.Interact.WasPressedThisFrame())
             {
                 CollectResources();
             }

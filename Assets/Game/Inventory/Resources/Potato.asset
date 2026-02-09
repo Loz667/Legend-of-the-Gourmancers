@@ -16,4 +16,5 @@ MonoBehaviour:
   ItemName: Potato
   ItemDescription: Brown and Earthy
   ItemIcon: {fileID: 21300000, guid: 44994881295ab4b1084896d685432eff, type: 3}
-  IsStackable: 0
+  HealthRestoreValue: 1
+  IsStackable: 1

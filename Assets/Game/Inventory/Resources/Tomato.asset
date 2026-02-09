@@ -16,4 +16,5 @@ MonoBehaviour:
   ItemName: Tomato
   ItemDescription: Squishy and Red
   ItemIcon: {fileID: 21300000, guid: bb7faf4c850ef48cdb33c2bd17737619, type: 3}
-  IsStackable: 0
+  HealthRestoreValue: 1
+  IsStackable: 1

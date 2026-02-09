@@ -16,4 +16,5 @@ MonoBehaviour:
   ItemName: Soup in Bread Bowl
   ItemDescription: Hearty
   ItemIcon: {fileID: 21300000, guid: 2b1027bb2bdc844c6a20f97777b33af9, type: 3}
-  IsStackable: 0
+  HealthRestoreValue: 3
+  IsStackable: 1

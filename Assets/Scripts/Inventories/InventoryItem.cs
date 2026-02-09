@@ -14,6 +14,8 @@ namespace LotG.Inventories
         [SerializeField][TextArea] string ItemDescription = null;
         [Tooltip("The icon representing the inventory item.")]
         [SerializeField] Sprite ItemIcon = null;
+        [Tooltip("The value of health this meal will restore")]
+        [SerializeField] int HealthRestoreValue = 0;
         [Tooltip("If true, multiiple items of same type can be stacked in same slot.")]
         [SerializeField] bool IsStackable = false;
 
