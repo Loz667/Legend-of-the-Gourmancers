@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6f124cd2c742d4a92a8e410c954ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButtonUI
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 11400000, guid: f5d19c70928b928468735f6616a0a676, type: 2}
   recipe: {fileID: 11400000, guid: 5c8f5c577e2642847b618516156b2070, type: 2}

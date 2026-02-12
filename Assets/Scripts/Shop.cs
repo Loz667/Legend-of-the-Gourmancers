@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] InventoryItem[] items;
+    [SerializeField] InventoryItemSO[] items;
     [SerializeField] float timeToCollect = 10f;
+    [SerializeField] InventorySO playerInventory;
 
     PlayerControls controls;
-    Inventory playerInventory;
     PlayerInteractUI playerInteractUI;
 
     float collectionTimer;
@@ -26,7 +26,6 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
-        playerInventory = FindFirstObjectByType<Inventory>();
         playerInteractUI = FindFirstObjectByType<PlayerInteractUI>();
     }
 
@@ -59,9 +58,9 @@ public class Shop : MonoBehaviour
 
     private void CollectResources()
     {
-        foreach (InventoryItem item in items)
+        foreach (InventoryItemSO item in items)
         {
-            playerInventory.AddToFirstEmptySlot(item, 1);
+            playerInventory.AddItem(item, 1);
         }
         collectionAvailable = false;
         collectionTimer = 0f;

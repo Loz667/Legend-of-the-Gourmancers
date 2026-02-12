@@ -7,12 +7,12 @@ public class RecipeSO : ScriptableObject
 {
     public string RecipeName;
     public Sprite RecipeIcon;
-    public List<InventoryItem> requiredIngredients;
-    public InventoryItem Dish;
+    public List<InventoryItemSO> requiredIngredients;
+    public InventoryItemSO Dish;
 
-    public bool CanCraft(Inventory inventory)
+    public bool CanCraft(InventorySO inventory)
     {
-        foreach (InventoryItem ingredient in requiredIngredients)
+        foreach (InventoryItemSO ingredient in requiredIngredients)
         {
             bool foundIngredient = inventory.HasItem(ingredient);
             if (!foundIngredient)
@@ -23,16 +23,16 @@ public class RecipeSO : ScriptableObject
         return true;
     }
 
-    public void Craft(Inventory inventory)
+    public void Craft(InventorySO inventory)
     {
         if (CanCraft(inventory))
         {
-            foreach (InventoryItem ingredient in requiredIngredients)
+            foreach (InventoryItemSO ingredient in requiredIngredients)
             {
                 inventory.RemoveItem(ingredient);
             }
         }        
         
-        inventory.AddToFirstEmptySlot(Dish, 1);        
+        inventory.AddItemToFirstEmptySlot(Dish, 1);        
     }
 }

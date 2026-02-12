@@ -11,12 +11,12 @@ namespace LotG.UI.Inventories
         [SerializeField] GameObject textContainer = null;
         [SerializeField] TextMeshProUGUI itemNumber = null;
 
-        public void SetItem(InventoryItem item)
+        public void SetItem(InventoryItemSO item)
         {
             SetItem(item, 0);
         }
 
-        public void SetItem(InventoryItem item, int number)
+        public void SetItem(InventoryItemSO item, int number)
         {
             Image image = GetComponent<Image>();
             if (item == null)

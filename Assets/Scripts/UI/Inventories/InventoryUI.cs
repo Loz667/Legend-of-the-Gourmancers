@@ -1,4 +1,5 @@
 using LotG.Inventories;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LotG.UI.Inventories
@@ -7,30 +8,32 @@ namespace LotG.UI.Inventories
     {
         [SerializeField] InventorySlotUI ItemSlotPrefab = null;
 
-        Inventory playerInventory;
+        List<InventorySlotUI> slotUIs = new List<InventorySlotUI>();
+        
 
-        private void Awake()
+        public void InitializeUI(int inventorySize)
         {
-            playerInventory = Inventory.GetPlayerInventory();
-            playerInventory.InventoryUpdated += Redraw;
-        }
-
-        private void Start()
-        {
-            Redraw();
-        }
-
-        private void Redraw()
-        {
-            foreach (Transform child in transform)
+            for (int i = 0; i < inventorySize; i++)
             {
-                Destroy(child.gameObject);
+                InventorySlotUI slotUI = 
+                    Instantiate(ItemSlotPrefab, transform);
+                slotUIs.Add(slotUI);
             }
+        }
 
-            for (int i = 0; i < playerInventory.GetSize(); i++)
+        public void UpdateData(int index, Sprite image, int quantity)
+        {
+            if (slotUIs.Count > index)
             {
-                var slotUI = Instantiate(ItemSlotPrefab, transform);
-                slotUI.Setup(playerInventory, i);
+                slotUIs[index].SetSlotData(image, quantity);
+            }
+        }
+
+        public void ResetData(int index)
+        {
+            if (slotUIs.Count > index) 
+            { 
+                slotUIs[index].ResetSlotData(); 
             }
         }
     }
