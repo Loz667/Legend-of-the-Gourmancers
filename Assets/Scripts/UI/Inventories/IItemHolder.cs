@@ -4,6 +4,6 @@ namespace LotG.UI.Inventories
 {
     public interface IItemHolder
     {
-        InventoryItem GetItem();
+        InventoryItemSO GetItem();
     }
 }

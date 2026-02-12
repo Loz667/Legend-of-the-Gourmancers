@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887fe66da8990324f848986a07acc5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LotG.UI.Inventories.InventorySlotUI
-  icon: {fileID: 830748767679274333}
+  itemImage: {fileID: 7371720621319026881}
+  quantityText: {fileID: 4461316115189127949}
 --- !u!1001 &5838690647197206492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,28 +179,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3984189150653955869, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521313068424108673, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360685550191439796, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7845482358803902568, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
       propertyPath: m_Name
       value: InventoryItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845482358803902568, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
---- !u!114 &830748767679274333 stripped
+--- !u!114 &4461316115189127949 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6521313068424108673, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7849481044205444305, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
   m_PrefabInstance: {fileID: 5838690647197206492}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4761399fe6d9ed4ba3f9b18c5f220a1, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LotG.UI.Inventories.InventoryItemIcon
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &4748526513634305773 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1216277022056620337, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
   m_PrefabInstance: {fileID: 5838690647197206492}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7371720621319026881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3984189150653955869, guid: 54dd720ad5f902640b321c82ad34045f, type: 3}
+  m_PrefabInstance: {fileID: 5838690647197206492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image

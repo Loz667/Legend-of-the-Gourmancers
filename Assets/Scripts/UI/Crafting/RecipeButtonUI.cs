@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class RecipeButtonUI : MonoBehaviour
 {
-    [SerializeField] Inventory playerInventory;
+    [SerializeField] InventorySO playerInventory;
 
     [SerializeField] RecipeSO recipe = null;
     Image recipeIcon;

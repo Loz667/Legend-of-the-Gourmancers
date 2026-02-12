@@ -17,4 +17,5 @@ MonoBehaviour:
   ItemDescription: Orange and Crunchy
   ItemIcon: {fileID: 21300000, guid: 1fbdfb9bf6c2e4397a1d62eed589ec1f, type: 3}
   HealthRestoreValue: 1
-  IsStackable: 1
+  Stackable: 1
+  MaxStackSize: 99

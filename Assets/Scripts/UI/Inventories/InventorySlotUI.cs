@@ -1,49 +1,34 @@
 using LotG.Inventories;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LotG.UI.Inventories
 {
-    public class InventorySlotUI : MonoBehaviour, IItemHolder
+    public class InventorySlotUI : MonoBehaviour
     {
-        [SerializeField] InventoryItemIcon icon = null;
+        [SerializeField] private Image itemImage;
+        [SerializeField] private TMP_Text quantityText;
 
-        int index;
-        Inventory inventory;
+        private bool isEmpty = true;
 
-        public void Setup(Inventory inventory, int index)
+        private void OnEnable()
         {
-            this.inventory = inventory;
-            this.index = index;
-            icon.SetItem(inventory.GetItemInSlot(index), inventory.GetNumberInSlot(index));
+            ResetSlotData();
         }
 
-        public int MaxStackSize(InventoryItem item)
+        public void SetSlotData(Sprite sprite, int quantity)
         {
-            if (inventory.HasSpaceFor(item))
-            {
-                return int.MaxValue;
-            }
-            return 0;
+            itemImage.gameObject.SetActive(true);
+            itemImage.sprite = sprite;
+            quantityText.text = quantity + "";
+            isEmpty = false;
         }
-
-        public void AddItems(InventoryItem item, int number)
+        
+        public void ResetSlotData()
         {
-            inventory.AddItemToSlot(index, item, number);
-        }
-
-        public InventoryItem GetItem()
-        {
-            return inventory.GetItemInSlot(index);
-        }
-
-        public int GetNumber()
-        {
-            return inventory.GetNumberInSlot(index);
-        }
-
-        public void RemoveItems(int number)
-        {
-            inventory.RemoveFromSlot(index, number);
+            itemImage.gameObject.SetActive(false);
+            isEmpty = true;
         }
     }
 }

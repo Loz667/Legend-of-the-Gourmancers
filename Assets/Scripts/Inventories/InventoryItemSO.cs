@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace LotG.Inventories
 {
-    [CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/Inventory/Item")]
-    public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName = "New InventoryItemSO", menuName = "Scriptable Objects/Inventories/InventoryItemSO")]
+    public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
     {
         [Tooltip("Auto-generated UUID of the inventory item.")]
         [SerializeField] string ItemID = null;
@@ -17,16 +17,18 @@ namespace LotG.Inventories
         [Tooltip("The value of health this meal will restore")]
         [SerializeField] int HealthRestoreValue = 0;
         [Tooltip("If true, multiiple items of same type can be stacked in same slot.")]
-        [SerializeField] bool IsStackable = false;
+        [SerializeField] bool Stackable = false;
+        [Tooltip("The maximum stack size for this item if it is stackable. Ignored if Stackable is false.")]
+        [SerializeField] int MaxStackSize = 99;
 
-        static Dictionary<string, InventoryItem> itemLookupCache;
+        static Dictionary<string, InventoryItemSO> itemLookupCache;
 
-        public static InventoryItem GetFromID(string itemID)
+        public static InventoryItemSO GetFromID(string itemID)
         {
             if (itemLookupCache == null)
             {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
+                itemLookupCache = new Dictionary<string, InventoryItemSO>();
+                var itemList = Resources.LoadAll<InventoryItemSO>("");
                 foreach ( var item in itemList)
                 {
                     if (itemLookupCache.ContainsKey(item.ItemID))
@@ -57,11 +59,6 @@ namespace LotG.Inventories
             return ItemID;
         }
 
-        public bool IsItemStackable()
-        {
-            return IsStackable;
-        }
-
         public string GetItemName()
         {
             return ItemName;
@@ -70,6 +67,16 @@ namespace LotG.Inventories
         public string GetItemDescription()
         {
             return ItemDescription;
+        }
+
+        public bool IsStackable()
+        {
+            return Stackable;
+        }
+
+        public int GetMaxStackSize()
+        {
+            return MaxStackSize;
         }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
