@@ -1,6 +1,7 @@
-using LotG.Inventories;
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LotG.UI.Inventories
@@ -16,6 +17,12 @@ namespace LotG.UI.Inventories
         {
             ResetSlotData();
         }
+        
+        public void ResetSlotData()
+        {
+            itemImage.gameObject.SetActive(false);
+            isEmpty = true;
+        }
 
         public void SetSlotData(Sprite sprite, int quantity)
         {
@@ -23,12 +30,6 @@ namespace LotG.UI.Inventories
             itemImage.sprite = sprite;
             quantityText.text = quantity + "";
             isEmpty = false;
-        }
-        
-        public void ResetSlotData()
-        {
-            itemImage.gameObject.SetActive(false);
-            isEmpty = true;
         }
     }
 }

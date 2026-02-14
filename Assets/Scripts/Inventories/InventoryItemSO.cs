@@ -69,6 +69,11 @@ namespace LotG.Inventories
             return ItemDescription;
         }
 
+        public int GetHealthRestoreValue()
+        {
+            return HealthRestoreValue;
+        }
+
         public bool IsStackable()
         {
             return Stackable;

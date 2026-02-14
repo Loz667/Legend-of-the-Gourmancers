@@ -16,5 +16,5 @@ MonoBehaviour:
   StartingLevel: 1
   BaseHealth: 10
   BaseInitiative: 5
-  BattleVisualPrefab: {fileID: 0}
+  BattleVisualPrefab: {fileID: 1934564764731170907, guid: 5027dda1b04ded248a0c16e98b439a1f, type: 3}
   OverworldVisualPrefab: {fileID: 0}

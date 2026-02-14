@@ -1,4 +1,3 @@
-using LotG.Inventories;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +5,16 @@ namespace LotG.UI.Inventories
 {
     public class InventoryUI : MonoBehaviour
     {
-        [SerializeField] InventorySlotUI ItemSlotPrefab = null;
+        [SerializeField] InventorySlotUI SlotPrefab = null;
 
-        List<InventorySlotUI> slotUIs = new List<InventorySlotUI>();
-        
+        List<InventorySlotUI> slotUIs = new List<InventorySlotUI>();        
 
         public void InitializeUI(int inventorySize)
         {
             for (int i = 0; i < inventorySize; i++)
             {
                 InventorySlotUI slotUI = 
-                    Instantiate(ItemSlotPrefab, transform);
+                    Instantiate(SlotPrefab, transform);
                 slotUIs.Add(slotUI);
             }
         }

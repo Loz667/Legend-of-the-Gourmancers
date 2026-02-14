@@ -15,4 +15,5 @@ MonoBehaviour:
   EnemyName: Slime
   BaseHunger: 1
   BaseInitiative: 1
-  BattleVisualPrefab: {fileID: 0}
+  BaseStrength: 1
+  BattleVisualPrefab: {fileID: 8182254057853454823, guid: 218075f46f5f85a4bbdfe4986b76db66, type: 3}

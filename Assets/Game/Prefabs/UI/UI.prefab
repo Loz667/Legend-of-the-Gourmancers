@@ -144,15 +144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3829211270060736716, guid: a4d5f234d2f0e5849aafb0be575c38d7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0007492799
+      value: -0.000027130352
       objectReference: {fileID: 0}
     - target: {fileID: 5924161810096794044, guid: a4d5f234d2f0e5849aafb0be575c38d7, type: 3}
       propertyPath: m_Size
-      value: 0.99999815
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5924161810096794044, guid: a4d5f234d2f0e5849aafb0be575c38d7, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5930187995937618774, guid: a4d5f234d2f0e5849aafb0be575c38d7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4480913019095800160, guid: 0e0babf95cc75fd4dba8cb9b404e452f, type: 3}
+      propertyPath: m_text
+      value: Interact
+      objectReference: {fileID: 0}
     - target: {fileID: 7339182183840460939, guid: 0e0babf95cc75fd4dba8cb9b404e452f, type: 3}
       propertyPath: m_Name
       value: Interact Canvas
@@ -298,13 +302,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6883832477924307403}
     m_Modifications:
+    - target: {fileID: 304046479442606875, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
+      propertyPath: SlotPrefab
+      value: 
+      objectReference: {fileID: 4704908138134722746, guid: e94688978e4d8a842b38a54393f220cf, type: 3}
     - target: {fileID: 3450292078020173818, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3450292078020173818, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000018477242
+      value: -0.000027130352
       objectReference: {fileID: 0}
     - target: {fileID: 3931986081980746146, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
       propertyPath: m_Pivot.x
@@ -427,7 +435,8 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6029350016098878728, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77880ba0be3122c4da1ebbaead5a03a3, type: 3}
