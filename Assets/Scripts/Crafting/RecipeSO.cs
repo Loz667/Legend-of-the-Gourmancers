@@ -7,12 +7,12 @@ public class RecipeSO : ScriptableObject
 {
     public string RecipeName;
     public Sprite RecipeIcon;
-    public List<InventoryItemSO> requiredIngredients;
-    public InventoryItemSO Dish;
+    public List<ItemSO> requiredIngredients;
+    public ItemSO Dish;
 
     public bool CanCraft(InventorySO inventory)
     {
-        foreach (InventoryItemSO ingredient in requiredIngredients)
+        foreach (ItemSO ingredient in requiredIngredients)
         {
             bool foundIngredient = inventory.HasItem(ingredient);
             if (!foundIngredient)
@@ -27,7 +27,7 @@ public class RecipeSO : ScriptableObject
     {
         if (CanCraft(inventory))
         {
-            foreach (InventoryItemSO ingredient in requiredIngredients)
+            foreach (ItemSO ingredient in requiredIngredients)
             {
                 inventory.RemoveItem(ingredient);
             }

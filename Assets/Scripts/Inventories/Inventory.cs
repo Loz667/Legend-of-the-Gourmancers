@@ -12,7 +12,7 @@ namespace LotG.Inventories
 
         public struct InventorySlot
         {
-            public InventoryItemSO item;
+            public ItemSO item;
             public int number;
         }
 
@@ -24,7 +24,7 @@ namespace LotG.Inventories
             return player.GetComponent<Inventory>();
         }
 
-        public bool HasSpaceFor(InventoryItemSO item)
+        public bool HasSpaceFor(ItemSO item)
         {
             return FindSlot(item) >= 0;
         }
@@ -34,7 +34,7 @@ namespace LotG.Inventories
             return slots.Length;
         }
 
-        public bool AddToFirstEmptySlot(InventoryItemSO item, int number)
+        public bool AddToFirstEmptySlot(ItemSO item, int number)
         {
             int i = FindSlot(item);
 
@@ -52,7 +52,7 @@ namespace LotG.Inventories
             return true;
         }
 
-        public bool HasItem(InventoryItemSO item)
+        public bool HasItem(ItemSO item)
         {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -64,7 +64,7 @@ namespace LotG.Inventories
             return false;
         }        
 
-        public bool RemoveItem(InventoryItemSO item)
+        public bool RemoveItem(ItemSO item)
         {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -77,7 +77,7 @@ namespace LotG.Inventories
             return false;
         }
 
-        public InventoryItemSO GetItemInSlot(int slot)
+        public ItemSO GetItemInSlot(int slot)
         {
             return slots[slot].item;
         }
@@ -101,7 +101,7 @@ namespace LotG.Inventories
             }
         }
 
-        public bool AddItemToSlot(int slot, InventoryItemSO item, int number)
+        public bool AddItemToSlot(int slot, ItemSO item, int number)
         {
             if (slots[slot].item != null)
             {
@@ -128,7 +128,7 @@ namespace LotG.Inventories
             slots = new InventorySlot[maxInventorySlots];
         }
 
-        private int FindSlot(InventoryItemSO item)
+        private int FindSlot(ItemSO item)
         {
             int i = FindStack(item);
             if (i < 0)
@@ -150,7 +150,7 @@ namespace LotG.Inventories
             return -1;
         }
 
-        private int FindStack(InventoryItemSO item)
+        private int FindStack(ItemSO item)
         {
             if (!item.IsStackable())
             {

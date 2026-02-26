@@ -16,16 +16,21 @@ namespace LotG.Inventories
             controls = new PlayerControls();
         }
 
+        private void OnEnable()
+        {
+            controls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            controls.Disable();
+        }
+
         private void Start()
         {
             inventoryUI.InitializeUI(inventoryData.inventorySize);
             inventoryData.Init();
             uiContainer.SetActive(false);
-        }
-
-        private void OnEnable()
-        {
-            controls.Enable();
         }
 
         private void Update()

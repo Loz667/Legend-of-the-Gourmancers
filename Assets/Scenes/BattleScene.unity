@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 59525307}
   - component: {fileID: 59525306}
   m_Layer: 5
-  m_Name: MealSelectMenu
+  m_Name: ItemSelectMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5925,7 +5925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2065056275}
   m_Layer: 5
-  m_Name: MealSelectContainer
+  m_Name: ItemSelectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] InventoryItemSO[] items;
+    [SerializeField] ItemSO[] items;
     [SerializeField] float timeToCollect = 10f;
     [SerializeField] InventorySO playerInventory;
 
@@ -22,6 +22,11 @@ public class Shop : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     private void Start()
@@ -58,7 +63,7 @@ public class Shop : MonoBehaviour
 
     private void CollectResources()
     {
-        foreach (InventoryItemSO item in items)
+        foreach (ItemSO item in items)
         {
             playerInventory.AddItem(item, 1);
         }

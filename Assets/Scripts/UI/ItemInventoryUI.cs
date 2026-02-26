@@ -11,7 +11,7 @@ namespace LotG.UI
         [SerializeField] ItemSlotUI itemPrefab = null;
         [SerializeField] ItemDescriptionUI itemDescription = null;
 
-        public event Action<int> OnDescriptionRequested;
+        public event Action<int> OnDescriptionRequested, OnItemActionRequsted;
 
         BattleSystem battleSystem;
 
@@ -35,9 +35,12 @@ namespace LotG.UI
             }
         }
 
-        private void HandleItemClicked(ItemSlotUI obj)
+        internal void ResetAllItems()
         {
-            battleSystem.SelectItem(obj.GetHealValue());
+            foreach (var itemUI in itemUIs)
+            {
+                itemUI.ResetSlotData();
+            }
         }
 
         public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity, int itemHeal)
@@ -54,6 +57,14 @@ namespace LotG.UI
             {
                 itemUIs[itemIndex].ResetSlotData();
             }
+        }
+
+        private void HandleItemClicked(ItemSlotUI obj)
+        {
+            battleSystem.SelectItem(obj.GetHealValue());
+
+            int index = itemUIs.IndexOf(obj);
+            OnItemActionRequsted?.Invoke(index);
         }
     }
 }

@@ -38,6 +38,11 @@ namespace LotG.Control
             controls.Enable();
         }
 
+        private void OnDisable()
+        {
+            controls.Disable();
+        }
+
         private void Start()
         {
             CalculateStepsToNextEncounter();

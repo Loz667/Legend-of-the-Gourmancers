@@ -18,6 +18,11 @@ namespace LotG.UI
             controls.Enable();
         }
 
+        private void OnDisable()
+        {
+            controls.Disable();
+        }
+
         private void Start()
         {
             uiContainer.SetActive(false);

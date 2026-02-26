@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LotG.Inventories
 {
     [CreateAssetMenu(fileName = "New InventoryItemSO", menuName = "Scriptable Objects/Inventories/InventoryItemSO")]
-    public class InventoryItemSO : ScriptableObject, ISerializationCallbackReceiver
+    public class ItemSO : ScriptableObject, ISerializationCallbackReceiver
     {
         [Tooltip("Auto-generated UUID of the inventory item.")]
         [SerializeField] string ItemID = null;
@@ -21,14 +21,14 @@ namespace LotG.Inventories
         [Tooltip("The maximum stack size for this item if it is stackable. Ignored if Stackable is false.")]
         [SerializeField] int MaxStackSize = 99;
 
-        static Dictionary<string, InventoryItemSO> itemLookupCache;
+        static Dictionary<string, ItemSO> itemLookupCache;
 
-        public static InventoryItemSO GetFromID(string itemID)
+        public static ItemSO GetFromID(string itemID)
         {
             if (itemLookupCache == null)
             {
-                itemLookupCache = new Dictionary<string, InventoryItemSO>();
-                var itemList = Resources.LoadAll<InventoryItemSO>("");
+                itemLookupCache = new Dictionary<string, ItemSO>();
+                var itemList = Resources.LoadAll<ItemSO>("");
                 foreach ( var item in itemList)
                 {
                     if (itemLookupCache.ContainsKey(item.ItemID))

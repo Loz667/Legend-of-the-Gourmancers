@@ -56,7 +56,7 @@ namespace LotG.Battle
             enemyManager = FindFirstObjectByType<EnemyManager>();
 
             itemSelectUI.Initialize(inventoryData.inventorySize);
-            //inventoryData.Init();
+            itemSelectUI.OnItemActionRequsted += RemoveSelectedItem;
 
             CreatePartyEntities();
             CreateEnemyEntities();
@@ -214,11 +214,12 @@ namespace LotG.Battle
 
         private void SetItemSelectButtons()
         {
+            itemSelectUI.ResetAllItems();
             foreach (var item in inventoryData.GetCurrentState())
             {
                 itemSelectUI.UpdateData(item.Key,
                     item.Value.item.GetIcon(),
-                    item.Value.quantity, 
+                    item.Value.quantity,
                     item.Value.item.GetHealthRestoreValue());
             }
         }
@@ -234,11 +235,12 @@ namespace LotG.Battle
             BattleEntity currentPlayerEntity = playerCombatants[currentPlayer];
             currentPlayerEntity.BattleAction = BattleEntity.Action.Feed;
             mealHealthValue = value;
-            foreach(var item in inventoryData.GetCurrentState())
-            {
-                inventoryData.RemoveItem(item.Value.item);
-                //itemSelectUI.ResetData(item.Key);
-            }
+
+            //foreach(var item in inventoryData.GetCurrentState())
+            //{
+            //    inventoryData.RemoveItem(item.Value.item);
+            //    //itemSelectUI.ResetData(item.Key);
+            //}
 
             currentPlayer++;
 
@@ -252,6 +254,12 @@ namespace LotG.Battle
                 itemSelectMenu.SetActive(false);
                 ShowBattleMenu();
             }
+        }
+
+        private void RemoveSelectedItem(int itemIndex)
+        {
+            inventoryData.RemoveItem(inventoryData.GetCurrentState()[itemIndex].item);
+            itemSelectUI.ResetData(itemIndex);
         }
 
         private void FeedAction(BattleEntity currAttacker, BattleEntity currTarget)
