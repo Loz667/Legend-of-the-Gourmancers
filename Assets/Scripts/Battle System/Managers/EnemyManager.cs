@@ -12,7 +12,7 @@ namespace LotG.Battle
 
         private void Awake()
         {
-            GenerateEnemyByName("Slime", 5);
+            GenerateEnemyByName("Slime Spore", 5);
         }
 
         private void GenerateEnemyByName(string enemyName, int level)

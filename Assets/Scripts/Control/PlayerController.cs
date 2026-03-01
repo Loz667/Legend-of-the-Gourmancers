@@ -22,7 +22,7 @@ namespace LotG.Control
         private int stepsToEncounter;
 
         private const string IS_WALKING_PARAM = "IsWalking";
-        private const string BATTLE_SCENE = "BattleScene";
+        private const string BATTLE_SCENE = "Battle_Scene";
         private const float TIME_PER_STEP = 0.5f;
 
         private void Awake()
