@@ -1,3 +1,5 @@
+using LotG.Battle;
+using LotG.QuestSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
@@ -16,6 +18,10 @@ namespace LotG.Control
         private Rigidbody rb;
         private Animator anim;
         private SpriteRenderer playerSprite;
+
+        private PartyManager partyManager;
+        private QuestManager questManager;
+
         private Vector3 movement;
         private float stepTimer;
         private bool movingInGrass;
@@ -45,6 +51,13 @@ namespace LotG.Control
 
         private void Start()
         {
+            partyManager = FindFirstObjectByType<PartyManager>();
+            if (partyManager.GetPosition() != Vector3.zero)
+            {
+                transform.position = partyManager.GetPosition();
+            }
+            questManager = FindFirstObjectByType<QuestManager>();
+
             CalculateStepsToNextEncounter();
         }
 
@@ -84,6 +97,8 @@ namespace LotG.Control
 
                     if (stepsInGrass >= stepsToEncounter)
                     {
+                        partyManager.SetPosition(transform.position);
+                        questManager.SaveQuest();
                         SceneManager.LoadScene(BATTLE_SCENE);
                     }
                 }

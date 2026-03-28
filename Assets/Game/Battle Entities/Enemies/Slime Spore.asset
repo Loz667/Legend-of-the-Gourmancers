@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46bc0ca32cfbbfd48affda64e9fa45e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 04ec8a1e7699fcc4096ba91224db9386, type: 3}
   m_Name: Slime Spore
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
   EnemyName: Slime Spore

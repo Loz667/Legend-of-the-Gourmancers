@@ -27,11 +27,11 @@ namespace LotG.UI.Inventories
             }
         }
 
-        public void ResetData(int index)
+        public void ResetData()
         {
-            if (slotUIs.Count > index) 
-            { 
-                slotUIs[index].ResetSlotData(); 
+            foreach (var slotUI in slotUIs)
+            {
+                slotUI.ResetSlotData();
             }
         }
     }

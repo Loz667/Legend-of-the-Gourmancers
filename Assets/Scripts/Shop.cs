@@ -42,7 +42,7 @@ public class Shop : MonoBehaviour
 
             if (controls.Player.Interact.WasPressedThisFrame())
             {
-                CollectResources();
+                CollectIngredients();
             }
         }
         else
@@ -61,12 +61,13 @@ public class Shop : MonoBehaviour
         }
     }
 
-    private void CollectResources()
+    private void CollectIngredients()
     {
         foreach (ItemSO item in items)
         {
             playerInventory.AddItem(item, 1);
         }
+        GameEventsManager.instance.miscEvents.IngredientsCollected();
         collectionAvailable = false;
         collectionTimer = 0f;
     }

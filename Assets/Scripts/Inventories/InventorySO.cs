@@ -9,17 +9,19 @@ namespace LotG.Inventories
     public class InventorySO : ScriptableObject
     {
         [Tooltip("Maximum number of inventory slots available.")]
-        [SerializeField] List<InventoryItem> inventoryItems;
+        //[SerializeField] List<InventoryItem> inventoryItems;
+        [SerializeField] InventoryItem[] inventoryItems;
         [field: SerializeField] public int inventorySize { get; private set; } = 16;
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
-        public void Init()
+        public void InitializeInventory()
         {
-            inventoryItems = new List<InventoryItem>();
-            for (int i = 0; i < inventorySize; i++)
+            //inventoryItems = new InventoryItem[inventorySize];
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
-                inventoryItems.Add(InventoryItem.GetEmptyItem());
+                if (!inventoryItems[i].IsEmpty) continue;
+                inventoryItems[i] = InventoryItem.GetEmptyItem();
             }
         }
 
@@ -27,7 +29,7 @@ namespace LotG.Inventories
         {
             Dictionary<int, InventoryItem> returnValue = 
                 new Dictionary<int, InventoryItem>();
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (inventoryItems[i].IsEmpty) continue;
                 returnValue[i] = inventoryItems[i];
@@ -39,7 +41,7 @@ namespace LotG.Inventories
         {
             if (!item.IsStackable())
             {
-                for (int i = 0; i < inventoryItems.Count; i++)
+                for (int i = 0; i < inventoryItems.Length; i++)
                 {
                     while (quantity > 0 && !IsInventoryFull())
                     {
@@ -63,7 +65,7 @@ namespace LotG.Inventories
                 quantity = 1
             };
 
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (inventoryItems[i].IsEmpty)
                 {
@@ -76,7 +78,7 @@ namespace LotG.Inventories
 
         private int AddStackableItem(ItemSO item, int quantity)
         {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (inventoryItems[i].IsEmpty) continue;
 
@@ -122,7 +124,7 @@ namespace LotG.Inventories
 
         public bool HasItem(ItemSO item)
         {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (object.ReferenceEquals(inventoryItems[i].item, item))
                 {
@@ -139,7 +141,7 @@ namespace LotG.Inventories
 
         public bool RemoveItem(ItemSO item)
         {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (object.ReferenceEquals(inventoryItems[i].item, item))
                 {
@@ -152,7 +154,7 @@ namespace LotG.Inventories
 
         public void RemoveFromSlot(int index, int quantity)
         {
-            if (inventoryItems.Count > index)
+            if (inventoryItems.Length > index)
             {
                 if (inventoryItems[index].IsEmpty)
                     return;
@@ -188,7 +190,7 @@ namespace LotG.Inventories
 
         private int FindEmptySlot()
         {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (inventoryItems[i].item == null)
                 {
@@ -205,7 +207,7 @@ namespace LotG.Inventories
                 return -1;
             }
 
-            for (int i = 0; i < inventoryItems.Count; i++)
+            for (int i = 0; i < inventoryItems.Length; i++)
             {
                 if (object.ReferenceEquals(inventoryItems[i].item, item))
                 {
@@ -213,24 +215,23 @@ namespace LotG.Inventories
                 }
             }
             return -1;
-        }
-
-        [Serializable]
-        public struct InventoryItem
-        {
-            public ItemSO item;
-            public int quantity;
-
-            public bool IsEmpty => item == null;
-
-            public InventoryItem ChangeQuantity(int newQuantity)
-            {
-                return new InventoryItem { item = this.item, quantity = newQuantity };
-            }
-
-            public static InventoryItem GetEmptyItem() 
-                => new InventoryItem { item = null, quantity = 0 };
-        }
+        }       
     }
 
+    [Serializable]
+    public struct InventoryItem
+    {
+        public ItemSO item;
+        public int quantity;
+
+        public bool IsEmpty => item == null;
+
+        public InventoryItem ChangeQuantity(int newQuantity)
+        {
+            return new InventoryItem { item = this.item, quantity = newQuantity };
+        }
+
+        public static InventoryItem GetEmptyItem()
+            => new InventoryItem { item = null, quantity = 0 };
+    }
 }

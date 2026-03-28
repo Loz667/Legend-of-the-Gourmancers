@@ -2,7 +2,7 @@ using LotG.Inventories;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Recipe", menuName = "Scriptable Objects/Crafting/Recipe")]
+[CreateAssetMenu(fileName = "New Recipe", menuName = "Scriptable Objects/Crafting/Create Recipe")]
 public class RecipeSO : ScriptableObject
 {
     public string RecipeName;
@@ -31,8 +31,9 @@ public class RecipeSO : ScriptableObject
             {
                 inventory.RemoveItem(ingredient);
             }
-        }        
-        
+        }
+
+        GameEventsManager.instance.miscEvents.RecipeCrafted();
         inventory.AddItemToFirstEmptySlot(Dish, 1);        
     }
 }

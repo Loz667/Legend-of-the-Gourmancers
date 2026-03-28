@@ -29,7 +29,7 @@ namespace LotG.Inventories
         private void Start()
         {
             inventoryUI.InitializeUI(inventoryData.inventorySize);
-            inventoryData.Init();
+            inventoryData.InitializeInventory();
             uiContainer.SetActive(false);
         }
 
@@ -38,10 +38,10 @@ namespace LotG.Inventories
             if (controls.Player.Inventory.WasPressedThisFrame())
             {
                 uiContainer.SetActive(!uiContainer.activeSelf);
+
                 foreach (var item in inventoryData.GetCurrentState())
                 {
-                    inventoryUI.UpdateData(item.Key, 
-                        item.Value.item.GetIcon(), 
+                    inventoryUI.UpdateData(item.Key, item.Value.item.GetIcon(),
                         item.Value.quantity);
                 }
             }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdb4984722e6df4482a3a1b97597e06, type: 3}
+  m_Name: DefeatSlimeQuest
+  m_EditorClassIdentifier: Assembly-CSharp::LotG.QuestSystem.QuestInfoSO
+  <QuestId>k__BackingField: DefeatSlimeQuest
+  questName: Defeat the Slime
+  requiredLevel: 1
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 8308270580346524932, guid: fb80f34834ced404aaadffc1268cc73c, type: 3}
+  - {fileID: 1772823565509306753, guid: 108f181922da5d9418edd675f6022e00, type: 3}
+  - {fileID: 7133421751178260278, guid: fd32362428c22144783ef080d8cf9455, type: 3}
+  experienceReward: 250
