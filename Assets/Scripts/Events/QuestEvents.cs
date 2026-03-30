@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
+using LotG.QuestSystem;
 
-namespace LotG.QuestSystem
+namespace LotG.Events
 {
     public class QuestEvents
     {

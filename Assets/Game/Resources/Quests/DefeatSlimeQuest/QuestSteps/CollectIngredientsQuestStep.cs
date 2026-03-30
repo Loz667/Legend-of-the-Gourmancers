@@ -1,3 +1,5 @@
+using LotG.Events;
+
 namespace LotG.QuestSystem
 {
     public class CollectIngredientsQuestStep : QuestStep

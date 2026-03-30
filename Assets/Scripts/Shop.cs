@@ -1,5 +1,6 @@
-using LotG.Inventories;
 using UnityEngine;
+using LotG.Inventories;
+using LotG.Events;
 
 public class Shop : MonoBehaviour
 {

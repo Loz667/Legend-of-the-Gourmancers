@@ -6,8 +6,8 @@ namespace LotG.QuestSystem
     {
         public QuestInfoSO questInfo;
         public QuestState questState;
-        private QuestStepState[] questStepStates;
 
+        private QuestStepState[] questStepStates;
         private int currentQuestStepIndex;
 
         public Quest(QuestInfoSO questInfo)

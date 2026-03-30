@@ -1,12 +1,13 @@
-using LotG.Inventories;
-using LotG.QuestSystem;
-using LotG.UI;
-using LotG.UI.Battle;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using LotG.Inventories;
+using LotG.QuestSystem;
+using LotG.UI;
+using LotG.UI.Battle;
+using LotG.Events;
 
 namespace LotG.Battle
 {

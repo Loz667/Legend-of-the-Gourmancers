@@ -1,21 +1,24 @@
 using System;
-using UnityEngine;
+using LotG.Input;
 
-public class InputEvents
+namespace LotG.Events
 {
-    public InputEventContext inputEventContext { get; private set; } = InputEventContext.DEFAULT;
-
-    public void ChangeInputEventContext(InputEventContext newContext)
+    public class InputEvents
     {
-        inputEventContext = newContext;
-    }
+        public InputEventContext inputEventContext { get; private set; } = InputEventContext.DEFAULT;
 
-    public event Action<InputEventContext> OnSubmitPressed;
-    public void SubmitPressed()
-    {
-        if (OnSubmitPressed != null)
+        public void ChangeInputEventContext(InputEventContext newContext)
         {
-            OnSubmitPressed(this.inputEventContext);
+            inputEventContext = newContext;
+        }
+
+        public event Action<InputEventContext> OnSubmitPressed;
+        public void SubmitPressed()
+        {
+            if (OnSubmitPressed != null)
+            {
+                OnSubmitPressed(this.inputEventContext);
+            }
         }
     }
 }

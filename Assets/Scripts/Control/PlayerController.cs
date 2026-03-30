@@ -1,4 +1,5 @@
 using LotG.Battle;
+using LotG.Events;
 using LotG.QuestSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,14 +52,30 @@ namespace LotG.Control
 
         private void Start()
         {
+            GameEventsManager.instance.miscEvents.onDisablePlayerMovement += DisablePlayerMovement;
+            GameEventsManager.instance.miscEvents.onEnablePlayerMovement += EnablePlayerMovement;
+
             partyManager = FindFirstObjectByType<PartyManager>();
+
             if (partyManager.GetPosition() != Vector3.zero)
             {
                 transform.position = partyManager.GetPosition();
             }
+
             questManager = FindFirstObjectByType<QuestManager>();
 
             CalculateStepsToNextEncounter();
+        }
+
+        private void EnablePlayerMovement()
+        {
+            controls.Enable();
+        }
+
+        private void DisablePlayerMovement()
+        {
+            controls.Disable();
+            anim.SetBool(IS_WALKING_PARAM, false);
         }
 
         private void Update()
@@ -103,6 +120,12 @@ namespace LotG.Control
                     }
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameEventsManager.instance.miscEvents.onDisablePlayerMovement -= DisablePlayerMovement;
+            GameEventsManager.instance.miscEvents.onEnablePlayerMovement -= EnablePlayerMovement;
         }
 
         private void CalculateStepsToNextEncounter()

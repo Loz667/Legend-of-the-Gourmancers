@@ -1,4 +1,4 @@
-using UnityEngine;
+using LotG.Events;
 
 namespace LotG.QuestSystem
 {

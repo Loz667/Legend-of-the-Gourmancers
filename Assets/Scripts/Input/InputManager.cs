@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using LotG.Events;
 
-[RequireComponent(typeof(PlayerInput))]
-public class InputManager : MonoBehaviour
+namespace LotG.Input
 {
-    public void HandleSubmit(InputAction.CallbackContext context)
+    [RequireComponent(typeof(PlayerInput))]
+    public class InputManager : MonoBehaviour
     {
-        if (context.started)
+        public void HandleSubmit(InputAction.CallbackContext context)
         {
-            GameEventsManager.instance.inputEvents.SubmitPressed();
+            if (context.started)
+            {
+                GameEventsManager.instance.inputEvents.SubmitPressed();
+            }
         }
     }
 }

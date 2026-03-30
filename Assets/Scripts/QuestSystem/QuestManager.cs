@@ -1,12 +1,15 @@
-using LotG.Battle;
 using System.Collections.Generic;
 using UnityEngine;
+using LotG.Battle;
+using LotG.Events;
 
 namespace LotG.QuestSystem
 {
     public class QuestManager : MonoBehaviour
     {
-        private static GameObject instance;
+        public static QuestManager instance { get; private set; }
+
+        [SerializeField] private bool loadQuestState = true;
 
         private Dictionary<string, Quest> questMap;
 
@@ -22,12 +25,10 @@ namespace LotG.QuestSystem
             }
             else
             {
-                instance = this.gameObject;
+                instance = this;
+                questMap = CreateQuestMap();
             }
             DontDestroyOnLoad(gameObject);
-
-            questMap = CreateQuestMap();
-            Debug.Log("Quest data loaded");
         }
 
         private void OnEnable()
@@ -50,6 +51,14 @@ namespace LotG.QuestSystem
 
         private void Start()
         {
+            InitialiseQuestData();
+
+            partyManager = FindFirstObjectByType<PartyManager>();
+            currentPlayerLevel = partyManager.GetPlayerLevel(); ;
+        }
+
+        private void InitialiseQuestData()
+        {
             foreach (Quest quest in questMap.Values)
             {
                 if (quest.questState == QuestState.IN_PROGRESS)
@@ -58,9 +67,6 @@ namespace LotG.QuestSystem
                 }
                 GameEventsManager.instance.questEvents.QuestStateChange(quest);
             }
-
-            partyManager = FindFirstObjectByType<PartyManager>();
-            currentPlayerLevel = partyManager.GetPlayerLevel(); ;
         }
 
         private void Update()
@@ -79,6 +85,14 @@ namespace LotG.QuestSystem
             foreach (Quest quest in questMap.Values)
             {
                 SaveQuestData(quest);
+            }
+        }
+
+        public void LoadQuest()
+        {
+            foreach (Quest quest in questMap.Values)
+            {
+                LoadQuestData(quest.questInfo);
             }
         }
 
@@ -199,12 +213,12 @@ namespace LotG.QuestSystem
             }
         }
 
-        private Quest LoadQuestData(QuestInfoSO questInfo)
+        public Quest LoadQuestData(QuestInfoSO questInfo)
         {
             Quest quest = null;
             try
             {
-                if (PlayerPrefs.HasKey(questInfo.QuestId))
+                if (PlayerPrefs.HasKey(questInfo.QuestId) && loadQuestState)
                 {
                     string serializedData = PlayerPrefs.GetString(questInfo.QuestId);
                     QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);

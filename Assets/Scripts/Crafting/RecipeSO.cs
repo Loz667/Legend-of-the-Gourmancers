@@ -1,6 +1,7 @@
-using LotG.Inventories;
 using System.Collections.Generic;
 using UnityEngine;
+using LotG.Inventories;
+using LotG.Events;
 
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Scriptable Objects/Crafting/Create Recipe")]
 public class RecipeSO : ScriptableObject

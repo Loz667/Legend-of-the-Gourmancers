@@ -1,31 +1,52 @@
 using System;
 
-public class MiscEvents
+namespace LotG.Events
 {
-    public event Action OnIngredientsCollected;
-    public void IngredientsCollected()
+    public class MiscEvents
     {
-        if (OnIngredientsCollected != null)
+        public event Action onDisablePlayerMovement;
+        public void DisablePlayerMovement()
         {
-            OnIngredientsCollected();
+            if (onDisablePlayerMovement != null)
+            {
+                onDisablePlayerMovement();
+            }
         }
-    }
 
-    public event Action OnRecipeCrafted;
-    public void RecipeCrafted()
-    {
-        if (OnRecipeCrafted != null)
+        public event Action onEnablePlayerMovement;
+        public void EnablePlayerMovement()
         {
-            OnRecipeCrafted();
+            if (onEnablePlayerMovement != null)
+            {
+                onEnablePlayerMovement();
+            }
         }
-    }
 
-    public event Action OnBattleCompleted;
-    public void BattleCompleted()
-    {
-        if (OnBattleCompleted != null)
+        public event Action OnIngredientsCollected;
+        public void IngredientsCollected()
         {
-            OnBattleCompleted();
+            if (OnIngredientsCollected != null)
+            {
+                OnIngredientsCollected();
+            }
+        }
+
+        public event Action OnRecipeCrafted;
+        public void RecipeCrafted()
+        {
+            if (OnRecipeCrafted != null)
+            {
+                OnRecipeCrafted();
+            }
+        }
+
+        public event Action OnBattleCompleted;
+        public void BattleCompleted()
+        {
+            if (OnBattleCompleted != null)
+            {
+                OnBattleCompleted();
+            }
         }
     }
 }

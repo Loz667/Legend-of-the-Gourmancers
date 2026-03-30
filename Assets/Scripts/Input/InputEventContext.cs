@@ -1,5 +1,9 @@
-public enum InputEventContext
+
+namespace LotG.Input
 {
-    DEFAULT,
-    DIALOGUE
+    public enum InputEventContext
+    {
+        DEFAULT,
+        DIALOGUE
+    }
 }

@@ -1,11 +1,16 @@
 using System;
 using UnityEngine;
+using LotG.Events;
+using LotG.Input;
 
 namespace LotG.QuestSystem
 {
     [RequireComponent(typeof(SphereCollider))]
     public class QuestPoint : MonoBehaviour
     {
+        [Header("Dialogue (optional)")]
+        [SerializeField] private string dialogueKnotName;
+
         [Header("Quest")]
         [SerializeField] private QuestInfoSO questInfoForPoint;
 
@@ -48,15 +53,22 @@ namespace LotG.QuestSystem
 
         private void HandleSubmitPressed(InputEventContext inputEventContext)
         {
-            if (!playerIsNearby) return;
+            if (!playerIsNearby || !inputEventContext.Equals(InputEventContext.DEFAULT)) return;
 
-            if (currentQuestState.Equals(QuestState.CAN_START) && startQuestPoint)
+            if (!dialogueKnotName.Equals(""))
             {
-                GameEventsManager.instance.questEvents.StartQuest(questId);
+                GameEventsManager.instance.dialogueEvents.EnterDialogue(dialogueKnotName);
             }
-            else if (currentQuestState.Equals(QuestState.CAN_COMPLETE) && completeQuestPoint)
+            else
             {
-                GameEventsManager.instance.questEvents.CompleteQuest(questId);
+                if (currentQuestState.Equals(QuestState.CAN_START) && startQuestPoint)
+                {
+                    GameEventsManager.instance.questEvents.StartQuest(questId);
+                }
+                else if (currentQuestState.Equals(QuestState.CAN_COMPLETE) && completeQuestPoint)
+                {
+                    GameEventsManager.instance.questEvents.CompleteQuest(questId);
+                }
             }
         }
 

@@ -24,7 +24,7 @@ namespace LotG.QuestSystem
                     if (startPoint) canStartOrCompleteIcon.SetActive(true);
                     break;
                 case QuestState.IN_PROGRESS:
-                    if (startPoint) inProgressIcon.SetActive(true);
+                    if (completePoint) inProgressIcon.SetActive(true);
                     break;
                 case QuestState.CAN_COMPLETE:
                     if (completePoint) canStartOrCompleteIcon.SetActive(true);
