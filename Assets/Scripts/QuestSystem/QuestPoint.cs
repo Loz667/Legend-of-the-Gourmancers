@@ -15,6 +15,8 @@ namespace LotG.QuestSystem
         [SerializeField] private QuestInfoSO questInfoForPoint;
 
         [Header("Config")]
+        [SerializeField] private GameObject promptPopup;
+        [SerializeField] private GameObject controlContainer;
         [SerializeField] private bool startQuestPoint;
         [SerializeField] private bool completeQuestPoint;
 
@@ -55,6 +57,8 @@ namespace LotG.QuestSystem
         {
             if (!playerIsNearby || !inputEventContext.Equals(InputEventContext.DEFAULT)) return;
 
+            promptPopup.SetActive(false);
+
             if (!dialogueKnotName.Equals(""))
             {
                 GameEventsManager.instance.dialogueEvents.EnterDialogue(dialogueKnotName);
@@ -77,6 +81,11 @@ namespace LotG.QuestSystem
             if (other.CompareTag("Player"))
             {
                 playerIsNearby = true;
+                controlContainer.SetActive(false);
+                if (!currentQuestState.Equals(QuestState.IN_PROGRESS))
+                {
+                    promptPopup.SetActive(true);
+                }
             }
         }
 
@@ -85,6 +94,11 @@ namespace LotG.QuestSystem
             if (other.CompareTag("Player"))
             {
                 playerIsNearby = false;
+                controlContainer.SetActive(true);
+                if (!currentQuestState.Equals(QuestState.IN_PROGRESS))
+                {
+                    promptPopup.SetActive(false);
+                }
             }
         }
     }

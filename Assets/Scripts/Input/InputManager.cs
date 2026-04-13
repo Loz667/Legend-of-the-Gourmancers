@@ -14,5 +14,13 @@ namespace LotG.Input
                 GameEventsManager.instance.inputEvents.SubmitPressed();
             }
         }
+
+        public void HandleQuestToggle(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                GameEventsManager.instance.inputEvents.QuestLogToggled();
+            }
+        }
     }
 }

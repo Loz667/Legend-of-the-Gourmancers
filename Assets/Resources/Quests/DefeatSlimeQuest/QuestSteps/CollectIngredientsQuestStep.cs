@@ -17,6 +17,11 @@ namespace LotG.QuestSystem
             GameEventsManager.instance.miscEvents.OnIngredientsCollected -= HandleIngredientsCollected;
         }
 
+        private void Start()
+        {
+            UpdateState();
+        }
+
         private void HandleIngredientsCollected()
         {
             if (ingredientsCollected < ingredientsToCollect)
@@ -34,7 +39,8 @@ namespace LotG.QuestSystem
         private void UpdateState()
         {
             string state = ingredientsCollected.ToString();
-            ChangeState(state);
+            string status = "Collect ingredients";
+            ChangeState(state, status);
         }
 
         protected override void SetQuestStepState(string state)

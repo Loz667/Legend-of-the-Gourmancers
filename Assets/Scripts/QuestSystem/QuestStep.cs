@@ -30,9 +30,10 @@ namespace LotG.QuestSystem
             }
         }
 
-        protected void ChangeState(string newState)
+        protected void ChangeState(string newState, string newStatus)
         {
-            GameEventsManager.instance.questEvents.QuestStepStateChange(questId, questStepIndex, new QuestStepState(newState));
+            GameEventsManager.instance.questEvents.QuestStepStateChange(questId, 
+                questStepIndex, new QuestStepState(newState, newStatus));
         }
 
         protected abstract void SetQuestStepState(string state);

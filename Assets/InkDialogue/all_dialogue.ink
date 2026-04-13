@@ -9,6 +9,7 @@ Spud! Slimes are attacking the village and eating all the fresh produce! Can you
 * [Yes]
     ~StartQuest("DefeatSlimeQuest")
     Great! Head to the market to see if they have anything that you can use.
+    Remember... Never go into battle without a supply of food items.
 * [No]
     Oh...
 --> END

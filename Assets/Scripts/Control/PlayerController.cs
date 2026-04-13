@@ -3,7 +3,6 @@ using LotG.Events;
 using LotG.QuestSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
 
 namespace LotG.Control
 {

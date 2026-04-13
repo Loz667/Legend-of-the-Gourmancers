@@ -4,9 +4,11 @@ namespace LotG.QuestSystem
 {
     public class Quest
     {
+        //static info
         public QuestInfoSO questInfo;
-        public QuestState questState;
 
+        //state info
+        public QuestState questState;
         private QuestStepState[] questStepStates;
         private int currentQuestStepIndex;
 
@@ -14,12 +16,12 @@ namespace LotG.QuestSystem
         {
             this.questInfo = questInfo;
             this.questState = QuestState.REQUIREMENTS_NOT_MET;
+            this.currentQuestStepIndex = 0;
             this.questStepStates = new QuestStepState[questInfo.questStepPrefabs.Length];
             for (int i = 0; i < questStepStates.Length; i++)
             {
                 questStepStates[i] = new QuestStepState();
             }
-            this.currentQuestStepIndex = 0;
         }
 
         public Quest(QuestInfoSO questInfo, QuestState questState, int currentQuestStepIndex, QuestStepState[] questStepStates)
@@ -50,7 +52,7 @@ namespace LotG.QuestSystem
 
         public bool CurrentQuestStepExists()
         {
-            return currentQuestStepIndex < questInfo.questStepPrefabs.Length;
+            return (currentQuestStepIndex < questInfo.questStepPrefabs.Length);
         }
 
         public void InstantiateCurrentQuestStep(Transform parent)
@@ -68,11 +70,49 @@ namespace LotG.QuestSystem
             if (stepIndex < questStepStates.Length)
             {
                 questStepStates[stepIndex].stepState = questStepState.stepState;
+                questStepStates[stepIndex].stepStatus = questStepState.stepStatus;
             }
             else
             {
                 Debug.LogWarning($"Attempting to store quest step state for step index {stepIndex} which is out of bounds for quest: {questInfo.questName}");
             }
+        }
+
+        public string GetFullStatusText()
+        {
+            string fullStatusText = "";
+
+            if (questState == QuestState.REQUIREMENTS_NOT_MET)
+            {
+                fullStatusText = "Requirements for this quest are not met.";
+            }
+            else if (questState == QuestState.CAN_START)
+            {
+                fullStatusText = "This quest can be started.";
+            }
+            else
+            {
+                for (int i = 0; i < currentQuestStepIndex; i++)
+                {
+                    fullStatusText += "<s>" + questStepStates[i].stepStatus + "</s>\n";
+                }
+
+                if (CurrentQuestStepExists())
+                {
+                    fullStatusText += questStepStates[currentQuestStepIndex].stepStatus;
+                }
+
+                if (questState == QuestState.CAN_COMPLETE)
+                {
+                    fullStatusText += "This quest can be completed.";
+                }
+                else if (questState == QuestState.COMPLETED)
+                {
+                    fullStatusText += "This quest is completed.";
+                }
+            }
+
+            return fullStatusText;
         }
 
         private GameObject GetCurrentQuestStep()

@@ -20,5 +20,14 @@ namespace LotG.Events
                 OnSubmitPressed(this.inputEventContext);
             }
         }
+
+        public event Action OnQuestLogToggled;
+        public void QuestLogToggled()
+        {
+            if (OnQuestLogToggled != null)
+            {
+                OnQuestLogToggled();
+            }
+        }
     }
 }

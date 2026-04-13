@@ -17,6 +17,11 @@ namespace LotG.QuestSystem
             GameEventsManager.instance.miscEvents.OnRecipeCrafted -= HandleRecipeCrafted;
         }
 
+        private void Start()
+        {
+            UpdateState();
+        }
+
         private void HandleRecipeCrafted()
         {
             if (recipesCrafted < recipesToCraft)
@@ -34,7 +39,8 @@ namespace LotG.QuestSystem
         private void UpdateState()
         {
             string state = recipesCrafted.ToString();
-            ChangeState(state);
+            string status = "Craft recipe";
+            ChangeState(state, status);
         }
 
         protected override void SetQuestStepState(string state)

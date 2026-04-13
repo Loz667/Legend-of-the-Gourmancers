@@ -136,6 +136,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RecipeBook"",
+                    ""type"": ""Button"",
+                    ""id"": ""38d67ef4-a56c-4835-bb93-23030944f0de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -306,19 +315,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a402d468-ff8c-4a43-9d70-94981457a956"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard/Mouse"",
-                    ""action"": ""Submit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9e92ec51-217d-4fb2-8207-bc1a8ed71060"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard/Mouse"",
@@ -356,6 +354,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""QuestLogToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc232548-97d0-43a1-a25d-71c09aecb4b7"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard/Mouse"",
+                    ""action"": ""RecipeBook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -399,6 +408,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         m_Player_QuestLogToggle = m_Player.FindAction("QuestLogToggle", throwIfNotFound: true);
+        m_Player_RecipeBook = m_Player.FindAction("RecipeBook", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -484,6 +494,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Submit;
     private readonly InputAction m_Player_QuestLogToggle;
+    private readonly InputAction m_Player_RecipeBook;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -515,6 +526,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/QuestLogToggle".
         /// </summary>
         public InputAction @QuestLogToggle => m_Wrapper.m_Player_QuestLogToggle;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RecipeBook".
+        /// </summary>
+        public InputAction @RecipeBook => m_Wrapper.m_Player_RecipeBook;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -556,6 +571,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @QuestLogToggle.started += instance.OnQuestLogToggle;
             @QuestLogToggle.performed += instance.OnQuestLogToggle;
             @QuestLogToggle.canceled += instance.OnQuestLogToggle;
+            @RecipeBook.started += instance.OnRecipeBook;
+            @RecipeBook.performed += instance.OnRecipeBook;
+            @RecipeBook.canceled += instance.OnRecipeBook;
         }
 
         /// <summary>
@@ -582,6 +600,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @QuestLogToggle.started -= instance.OnQuestLogToggle;
             @QuestLogToggle.performed -= instance.OnQuestLogToggle;
             @QuestLogToggle.canceled -= instance.OnQuestLogToggle;
+            @RecipeBook.started -= instance.OnRecipeBook;
+            @RecipeBook.performed -= instance.OnRecipeBook;
+            @RecipeBook.canceled -= instance.OnRecipeBook;
         }
 
         /// <summary>
@@ -683,5 +704,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuestLogToggle(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RecipeBook" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRecipeBook(InputAction.CallbackContext context);
     }
 }

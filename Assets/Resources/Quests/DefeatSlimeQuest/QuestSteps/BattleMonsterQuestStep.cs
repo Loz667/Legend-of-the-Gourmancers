@@ -17,6 +17,11 @@ namespace LotG.QuestSystem
             GameEventsManager.instance.miscEvents.OnBattleCompleted -= HandleBattleWon;
         }
 
+        private void Start()
+        {
+            UpdateState();
+        }
+
         private void HandleBattleWon()
         {
             if (battlesWon < battlesToWin)
@@ -34,7 +39,8 @@ namespace LotG.QuestSystem
         private void UpdateState()
         {
             string state = battlesWon.ToString();
-            ChangeState(state);
+            string status = "Defeat Slime";
+            ChangeState(state, status);
         }
 
         protected override void SetQuestStepState(string state)
