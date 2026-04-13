@@ -13,6 +13,7 @@ namespace LotG.Control
         [SerializeField] private int stepsInGrass;
         [SerializeField] private int minStepsToEncounter;
         [SerializeField] private int maxStepsToEncounter;
+        [SerializeField] private ParticleSystem craftParticles;
 
         private Rigidbody rb;
         private Animator anim;
@@ -43,6 +44,7 @@ namespace LotG.Control
             GameEventsManager.instance.inputEvents.OnMovePressed += MovePressed;
             GameEventsManager.instance.miscEvents.onDisablePlayerMovement += DisablePlayerMovement;
             GameEventsManager.instance.miscEvents.onEnablePlayerMovement += EnablePlayerMovement;
+            GameEventsManager.instance.miscEvents.OnRecipeCrafted += RecipeCrafted;
 
             partyManager = FindFirstObjectByType<PartyManager>();
 
@@ -61,6 +63,7 @@ namespace LotG.Control
             GameEventsManager.instance.inputEvents.OnMovePressed -= MovePressed;
             GameEventsManager.instance.miscEvents.onDisablePlayerMovement -= DisablePlayerMovement;
             GameEventsManager.instance.miscEvents.onEnablePlayerMovement -= EnablePlayerMovement;
+            GameEventsManager.instance.miscEvents.OnRecipeCrafted -= RecipeCrafted;
         }
 
         private void EnablePlayerMovement()
@@ -132,6 +135,11 @@ namespace LotG.Control
         private void CalculateStepsToNextEncounter()
         {
             stepsToEncounter = Random.Range(minStepsToEncounter, maxStepsToEncounter);
+        }
+
+        private void RecipeCrafted()
+        {
+            Instantiate(craftParticles, transform.position, Quaternion.identity);
         }
     }
 }

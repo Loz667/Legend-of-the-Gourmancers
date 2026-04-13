@@ -2763,7 +2763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: near clip plane
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: orthographic size
@@ -2783,11 +2783,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.28
+      value: 9.78
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3174,11 +3174,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 863121388574873988, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: FollowOffset.y
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 863121388574873988, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: FollowOffset.z
-      value: -4
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 863121388574873988, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+      propertyPath: TrackerSettings.RotationDamping.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Name
@@ -3190,11 +3194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.28
+      value: 9.78
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3223,6 +3227,10 @@ PrefabInstance:
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693737780980544719, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+      propertyPath: Lens.NearClipPlane
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4693737780980544719, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: Target.TrackingTarget
@@ -4138,6 +4146,7 @@ MonoBehaviour:
   stepsInGrass: 0
   minStepsToEncounter: 5
   maxStepsToEncounter: 10
+  craftParticles: {fileID: 8817633822907819524, guid: 47e718371bd7047409ca2664a2e3b8fc, type: 3}
 --- !u!4 &1819031880
 Transform:
   m_ObjectHideFlags: 0

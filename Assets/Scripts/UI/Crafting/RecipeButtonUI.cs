@@ -1,7 +1,6 @@
 using LotG.Events;
 using LotG.Input;
 using LotG.Inventories;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
