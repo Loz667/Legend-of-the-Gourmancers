@@ -7,9 +7,9 @@ public class Shop : MonoBehaviour
     [SerializeField] ItemSO[] items;
     [SerializeField] float timeToCollect = 10f;
     [SerializeField] InventorySO playerInventory;
+    [SerializeField] PlayerInteractUI playerInteractUI;
 
     PlayerControls controls;
-    PlayerInteractUI playerInteractUI;
 
     float collectionTimer;
     bool collectionAvailable = false;
@@ -32,7 +32,7 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
-        playerInteractUI = FindFirstObjectByType<PlayerInteractUI>();
+        
     }
 
     private void Update()

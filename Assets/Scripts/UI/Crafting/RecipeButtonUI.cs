@@ -1,4 +1,7 @@
+using LotG.Events;
+using LotG.Input;
 using LotG.Inventories;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +30,24 @@ public class RecipeButtonUI : MonoBehaviour
         }
     }
 
-    public void OnButtonClick()
+    private void OnEnable()
+    {
+        GameEventsManager.instance.inputEvents.OnSubmitPressed += SubmitPressed;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.OnSubmitPressed -= SubmitPressed;
+    }
+
+    private void SubmitPressed(InputEventContext inputEventContext)
+    {
+        if (!inputEventContext.Equals(InputEventContext.DEFAULT)) return;
+
+        CraftRecipe();
+    }
+
+    public void CraftRecipe()
     {
         if (recipe != null)
         {

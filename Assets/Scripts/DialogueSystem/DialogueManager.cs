@@ -54,11 +54,6 @@ namespace LotG.DialogueSystem
             GameEventsManager.instance.dialogueEvents.OnUpdateChoiceIndex -= UpdateChoiceIndex;
         }
 
-        void UpdateChoiceIndex(int choiceIndex)
-        {
-            this.currentChoiceIndex = choiceIndex;
-        }
-
         void EnterDialogue(string dialogue)
         {
             if (dialoguePlaying) return;
@@ -66,9 +61,7 @@ namespace LotG.DialogueSystem
             dialoguePlaying = true;
 
             GameEventsManager.instance.dialogueEvents.DialogueStarted();
-
             GameEventsManager.instance.miscEvents.DisablePlayerMovement();
-
             GameEventsManager.instance.inputEvents.ChangeInputEventContext(InputEventContext.DIALOGUE);
 
             if (!dialogue.Equals(""))
@@ -88,6 +81,11 @@ namespace LotG.DialogueSystem
             if (!inputEventContext.Equals(InputEventContext.DIALOGUE)) return;
 
             ContinueOrExitStory();
+        }
+
+        void UpdateChoiceIndex(int choiceIndex)
+        {
+            this.currentChoiceIndex = choiceIndex;
         }
 
         void ContinueOrExitStory()
@@ -127,9 +125,7 @@ namespace LotG.DialogueSystem
             dialoguePlaying = false;
 
             GameEventsManager.instance.dialogueEvents.DialogueFinished();
-
             GameEventsManager.instance.miscEvents.EnablePlayerMovement();
-
             GameEventsManager.instance.inputEvents.ChangeInputEventContext(InputEventContext.DEFAULT);
 
             currentStory.ResetState();

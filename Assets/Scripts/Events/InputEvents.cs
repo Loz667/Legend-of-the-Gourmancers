@@ -1,5 +1,6 @@
 using System;
 using LotG.Input;
+using UnityEngine;
 
 namespace LotG.Events
 {
@@ -10,6 +11,15 @@ namespace LotG.Events
         public void ChangeInputEventContext(InputEventContext newContext)
         {
             inputEventContext = newContext;
+        }
+
+        public event Action<Vector2> OnMovePressed;
+        public void MovePressed(Vector2 moveDir)
+        {
+            if (OnMovePressed != null)
+            {
+                OnMovePressed(moveDir);
+            }
         }
 
         public event Action<InputEventContext> OnSubmitPressed;

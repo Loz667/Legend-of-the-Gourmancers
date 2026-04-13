@@ -14,7 +14,6 @@ namespace LotG.Control
         [SerializeField] private int minStepsToEncounter;
         [SerializeField] private int maxStepsToEncounter;
 
-        private PlayerControls controls;
         private Rigidbody rb;
         private Animator anim;
         private SpriteRenderer playerSprite;
@@ -22,8 +21,9 @@ namespace LotG.Control
         private PartyManager partyManager;
         private QuestManager questManager;
 
-        private Vector3 movement;
+        private Vector3 moveVelocity;
         private float stepTimer;
+        private bool movementDisabled;
         private bool movingInGrass;
         private int stepsToEncounter;
 
@@ -33,24 +33,14 @@ namespace LotG.Control
 
         private void Awake()
         {
-            controls = new PlayerControls();
             rb = GetComponent<Rigidbody>();
             anim = GetComponentInChildren<Animator>();
             playerSprite = GetComponentInChildren<SpriteRenderer>();
         }
 
-        private void OnEnable()
-        {
-            controls.Enable();
-        }
-
-        private void OnDisable()
-        {
-            controls.Disable();
-        }
-
         private void Start()
         {
+            GameEventsManager.instance.inputEvents.OnMovePressed += MovePressed;
             GameEventsManager.instance.miscEvents.onDisablePlayerMovement += DisablePlayerMovement;
             GameEventsManager.instance.miscEvents.onEnablePlayerMovement += EnablePlayerMovement;
 
@@ -66,42 +56,46 @@ namespace LotG.Control
             CalculateStepsToNextEncounter();
         }
 
+        private void OnDestroy()
+        {
+            GameEventsManager.instance.inputEvents.OnMovePressed -= MovePressed;
+            GameEventsManager.instance.miscEvents.onDisablePlayerMovement -= DisablePlayerMovement;
+            GameEventsManager.instance.miscEvents.onEnablePlayerMovement -= EnablePlayerMovement;
+        }
+
         private void EnablePlayerMovement()
         {
-            controls.Enable();
+            movementDisabled = false;
         }
 
         private void DisablePlayerMovement()
         {
-            controls.Disable();
+            movementDisabled = true;
+            moveVelocity = Vector3.zero;
             anim.SetBool(IS_WALKING_PARAM, false);
+        }
+
+        private void MovePressed(Vector2 moveDir)
+        {
+            moveVelocity = new Vector3(moveDir.x, 0f, moveDir.y).normalized * moveSpeed;
+
+            if (movementDisabled)
+            {
+                moveVelocity = Vector3.zero;
+            }
         }
 
         private void Update()
         {
-            float moveX = controls.Player.Move.ReadValue<Vector2>().x;
-            float moveZ = controls.Player.Move.ReadValue<Vector2>().y;
-
-            movement = new Vector3(moveX, 0, moveZ).normalized;
-
-            anim.SetBool(IS_WALKING_PARAM, movement != Vector3.zero);
-
-            if (moveX != 0 && moveX < 0)
-            {
-                playerSprite.flipX = true;
-            }
-            else if (moveX != 0 && moveX > 0)
-            {
-                playerSprite.flipX = false;
-            }
+            UpdateAnimations();
         }
 
         private void FixedUpdate()
         {
-            rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
+            rb.linearVelocity = moveVelocity;
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, 1, grassLayer);
-            movingInGrass = colliders.Length != 0 && movement != Vector3.zero;
+            movingInGrass = colliders.Length != 0 && moveVelocity != Vector3.zero;
 
             if (movingInGrass)
             {
@@ -121,16 +115,23 @@ namespace LotG.Control
             }
         }
 
-        private void OnDestroy()
+        private void UpdateAnimations()
         {
-            GameEventsManager.instance.miscEvents.onDisablePlayerMovement -= DisablePlayerMovement;
-            GameEventsManager.instance.miscEvents.onEnablePlayerMovement -= EnablePlayerMovement;
+            anim.SetBool(IS_WALKING_PARAM, moveVelocity != Vector3.zero);
+
+            if (moveVelocity.x != 0 && moveVelocity.x < 0)
+            {
+                playerSprite.flipX = true;
+            }
+            else if (moveVelocity.x != 0 && moveVelocity.x > 0)
+            {
+                playerSprite.flipX = false;
+            }
         }
 
         private void CalculateStepsToNextEncounter()
         {
             stepsToEncounter = Random.Range(minStepsToEncounter, maxStepsToEncounter);
-
         }
     }
 }
