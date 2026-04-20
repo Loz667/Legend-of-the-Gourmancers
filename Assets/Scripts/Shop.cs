@@ -9,6 +9,9 @@ public class Shop : MonoBehaviour
     [SerializeField] InventorySO playerInventory;
     [SerializeField] PlayerInteractUI playerInteractUI;
 
+    [SerializeField] AudioSource fxPlayer;
+    [SerializeField] AudioClip collectClip;
+
     PlayerControls controls;
 
     float collectionTimer;
@@ -69,6 +72,7 @@ public class Shop : MonoBehaviour
             playerInventory.AddItem(item, 1);
         }
         GameEventsManager.instance.miscEvents.IngredientsCollected();
+        fxPlayer.PlayOneShot(collectClip);
         collectionAvailable = false;
         collectionTimer = 0f;
     }

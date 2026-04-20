@@ -7,7 +7,24 @@ namespace LotG.Input
     [RequireComponent(typeof(PlayerInput))]
     public class InputManager : MonoBehaviour
     {
+        public static InputManager instance { get; private set; }
+        
         bool cursorLocked = true;
+
+        private void Awake()
+        {
+            if (instance != null)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+            DontDestroyOnLoad(gameObject);
+
+            SetCursorState(cursorLocked);
+        }
 
         public void HandleMovePressed(InputAction.CallbackContext context)
         {
@@ -34,12 +51,12 @@ namespace LotG.Input
             }
         }
 
-        private void OnApplicationFocus(bool hasFocus)
-        {
-            SetCursorState(cursorLocked);
-        }
+        //private void OnApplicationFocus(bool hasFocus)
+        //{
+        //    SetCursorState(cursorLocked);
+        //}
 
-        private void SetCursorState(bool newState)
+        public void SetCursorState(bool newState)
         {
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }

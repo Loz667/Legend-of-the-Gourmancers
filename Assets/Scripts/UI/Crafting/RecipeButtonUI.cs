@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class RecipeButtonUI : MonoBehaviour
 {
     [SerializeField] InventorySO playerInventory;
-
     [SerializeField] RecipeSO recipe = null;
+    [SerializeField] AudioSource fxPlayer;
+    [SerializeField] AudioClip craftClip;
+    [SerializeField] ParticleSystem craftParticles;
+
     Image recipeIcon;
 
     private void Awake()
@@ -55,6 +58,8 @@ public class RecipeButtonUI : MonoBehaviour
                 if (playerInventory.HasSpaceFor(recipe.Dish))
                 {
                     recipe.Craft(playerInventory);
+                    fxPlayer.PlayOneShot(craftClip);
+                    craftParticles.Play();
                 }
                 else
                 {

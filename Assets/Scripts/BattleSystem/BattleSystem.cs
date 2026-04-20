@@ -8,6 +8,7 @@ using LotG.QuestSystem;
 using LotG.UI;
 using LotG.UI.Battle;
 using LotG.Events;
+using LotG.Input;
 
 namespace LotG.Battle
 {
@@ -40,12 +41,20 @@ namespace LotG.Battle
         [SerializeField] private TextMeshProUGUI battleText;
 
         [Space(10)]
+        [Header("Audio")]
+        [SerializeField] private AudioSource fxPlayer;
+        [SerializeField] private AudioClip attackClip;
+        [SerializeField] private AudioClip battleWinClip;
+        [SerializeField] private AudioClip battleLoseClip;
+
+        [Space(10)]
         [Header("Inventory")]
         [SerializeField] private InventorySO inventoryData;
 
         private PartyManager partyManager;
         private EnemyManager enemyManager;
         private QuestManager questManager;
+        private InputManager inputManager;
 
         private int currentPlayer;
         protected int mealHealthValue;
@@ -64,6 +73,9 @@ namespace LotG.Battle
             partyManager = FindFirstObjectByType<PartyManager>();
             enemyManager = FindFirstObjectByType<EnemyManager>();
             questManager = FindFirstObjectByType<QuestManager>();
+            inputManager = FindFirstObjectByType<InputManager>();
+
+            inputManager.SetCursorState(false);
 
             itemSelectUI.Initialize(inventoryData.inventorySize);
             itemSelectUI.OnItemActionRequsted += RemoveSelectedItem;
@@ -121,6 +133,7 @@ namespace LotG.Battle
                 }
                 BattleEntity currTarget = allCombatants[currAttacker.Target];
                 FeedAction(currAttacker, currTarget);
+                fxPlayer.PlayOneShot(attackClip);
 
                 yield return new WaitForSeconds(TURN_DURATION);
 
@@ -138,6 +151,7 @@ namespace LotG.Battle
                         GameEventsManager.instance.miscEvents.BattleCompleted();
                         currentState = BattleState.Won;
                         battleText.text = WIN_MSG;
+                        fxPlayer.PlayOneShot(battleWinClip);
                         questManager.SaveQuest();
                         yield return new WaitForSeconds(TURN_DURATION);
                         SceneManager.LoadScene(OVERWORLD_SCENE);
@@ -155,6 +169,8 @@ namespace LotG.Battle
                 BattleEntity currTarget = allCombatants[currAttacker.Target];
 
                 AttackAction(currAttacker, currTarget);
+                fxPlayer.PlayOneShot(attackClip);
+
                 yield return new WaitForSeconds(TURN_DURATION);
 
                 if (currTarget.CurrHealth <= 0)
@@ -169,6 +185,7 @@ namespace LotG.Battle
                     {
                         currentState = BattleState.Lost;
                         battleText.text = LOSE_MSG;
+                        fxPlayer.PlayOneShot(battleLoseClip);
                         yield return new WaitForSeconds(TURN_DURATION);
                         SceneManager.LoadScene(OVERWORLD_SCENE);
                     }
